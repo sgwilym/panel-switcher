@@ -18,17 +18,20 @@
 			// Read the data-beat-length of the switch for instructions and create one instruction for each child of element.
 			if (switcher.attr('data-beat-length')) {
 				var defaultBeat = parseFloat(switcher.attr('data-beat-length'));
-				switcher.children().each(function(index) {
-					// If the child has data-beat-length attribute, put it in the instructions.
-					if ($(this).attr('data-beat-length')) {
-						beatInstructions[index] = parseFloat($(this).attr('data-beat-length'));
-					}
-					else {
-					// If it doesn't, use the default beat.
-					beatInstructions[index] = defaultBeat;
-					}
-				});
 			}
+			else {
+				var defaultBeat = 1;
+			}
+			switcher.children().each(function(index) {
+				// If the child has data-beat-length attribute, put it in the instructions.
+				if ($(this).attr('data-beat-length')) {
+					beatInstructions[index] = parseFloat($(this).attr('data-beat-length'));
+				}
+				else {
+				// If it doesn't, use the default beat.
+				beatInstructions[index] = defaultBeat;
+				}
+			});
 			
 			// A new function to schedule out the display of images. 
 			function switchIt(step) {
